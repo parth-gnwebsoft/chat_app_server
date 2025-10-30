@@ -18,7 +18,7 @@ class Program
     private static readonly object socketLock = new();
     private static readonly object groupLock = new();
 
-    static async void Main()
+    static void Main()
     {
         // --- 2. Start the Server --- 
         Console.WriteLine("Starting Fleck server...");
