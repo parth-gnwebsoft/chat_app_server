@@ -412,7 +412,7 @@ class Program
 
         Console.WriteLine($"Server started on ws://0.0.0.0:{port}");
         // Console.ReadLine(); // Keep the server running
-        await Task.Delay(Timeout.Infinite);
+        new System.Threading.ManualResetEvent(false).WaitOne();
     }
 
     // --- 6. Helper Methods for Sending Messages ---
