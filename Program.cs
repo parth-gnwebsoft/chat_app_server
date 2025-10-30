@@ -18,7 +18,7 @@ class Program
     private static readonly object socketLock = new();
     private static readonly object groupLock = new();
 
-    static void Main()
+    static async void Main()
     {
         // --- 2. Start the Server --- 
         Console.WriteLine("Starting Fleck server...");
@@ -411,7 +411,8 @@ class Program
         });
 
         Console.WriteLine($"Server started on ws://0.0.0.0:{port}");
-        Console.ReadLine(); // Keep the server running
+        // Console.ReadLine(); // Keep the server running
+        await Task.Delay(Timeout.Infinite);
     }
 
     // --- 6. Helper Methods for Sending Messages ---
