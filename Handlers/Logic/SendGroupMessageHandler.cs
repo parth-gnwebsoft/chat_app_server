@@ -20,7 +20,7 @@ namespace Handlers.Logic
         }
 
         // 2. Implement async method
-        public Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
+        public async Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
         {
             string? token;
             JsonElement messageDataPayload;
@@ -53,11 +53,7 @@ namespace Handlers.Logic
 
                 // 5. Broadcast the API's response
                 var groupId = savedMessage.ChannelID.ToString();
-                if (groupId != null)
-                {
-                    _broadcaster.BroadcastToGroup(groupId, "getGroupMessage", savedMessage);
-                }
-                
+                _broadcaster.BroadcastToGroup(groupId, "getGroupMessage", savedMessage);
             }
             catch (Exception ex)
             {

@@ -25,7 +25,7 @@ namespace Handlers.Logic
         }
 
         // 2. Update HandleAsync
-        public Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
+        public async Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
         {
             string? token;
             ReactionRequest? reactionRequest;

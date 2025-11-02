@@ -15,7 +15,7 @@ namespace Handlers.Logic
             _broadcaster = broadcaster;
         }
 
-        public Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
+        public async Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
         {
             var groupId = payload.GetProperty("groupId").GetString();
             if (groupId == null) return;

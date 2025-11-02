@@ -15,7 +15,7 @@ namespace Handlers.Logic
             _broadcaster = broadcaster;
         }
 
-        public Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
+        public async Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
         {
             var isGroup = payload.GetProperty("isGroup").GetBoolean();
             var senderId = payload.GetProperty("senderId").GetString();
@@ -24,9 +24,8 @@ namespace Handlers.Logic
             if (isGroup)
             {
                 var groupId = payload.GetProperty("groupId").GetString();
-                if (groupId != null) { typingPayload = new { senderId, groupId };
-                _broadcaster.BroadcastToGroup(groupId, "userStoppedTyping", typingPayload, excludeSocket: socket);}
-                
+                typingPayload = new { senderId, groupId };
+                _broadcaster.BroadcastToGroup(groupId, "userStoppedTyping", typingPayload, excludeSocket: socket);
             }
             else
             {

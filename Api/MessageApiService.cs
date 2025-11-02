@@ -22,7 +22,7 @@ namespace Api
         }
 
         // The token is now passed in as an argument
-        public Task<ChatMessageResponse> SaveMessageAsync(ChatMessageRequest message, string authToken)
+        public async Task<ChatMessageResponse> SaveMessageAsync(ChatMessageRequest message, string authToken)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Api
         } 
 
         // --- ADD THIS ENTIRE NEW METHOD ---
-        public Task<ChatMessageRequest> UpdateMessageAsync(ChatMessageRequest messageUpdate, string authToken)
+        public async Task<ChatMessageRequest> UpdateMessageAsync(ChatMessageRequest messageUpdate, string authToken)
         {
             try
             {
@@ -118,7 +118,7 @@ namespace Api
         }
 
 
-        public Task<ReactionResponse> AddReactionAsync(ReactionRequest reaction, string authToken)
+        public async Task<ReactionResponse> AddReactionAsync(ReactionRequest reaction, string authToken)
         {
             try
                 {
