@@ -22,7 +22,7 @@ namespace Handlers.Logic
         }
 
         // 2. Update HandleAsync
-        public async Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
+        public Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
         {
             string? token;
             ChatMessageRequest? messageRequest; // This will be the partial update
@@ -56,7 +56,8 @@ namespace Handlers.Logic
                 if (isGroup)
                 {
                     var groupId = updatedMessage.ChannelID.ToString();
-                    _broadcaster.BroadcastToGroup(groupId, "messageDeleted", updatedMessage);
+                    if (groupId != null) { _broadcaster.BroadcastToGroup(groupId, "messageDeleted", updatedMessage);}
+                    
                 }
                 else
                 {

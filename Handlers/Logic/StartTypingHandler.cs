@@ -26,8 +26,12 @@ namespace Handlers.Logic
             if (isGroup)
             {
                 var groupId = payload.GetProperty("groupId").GetString();
-                typingPayload = new { senderId, groupId };
+                if(groupId != null)
+                {
+                    typingPayload = new { senderId, groupId };
                 _broadcaster.BroadcastToGroup(groupId, "userTyping", typingPayload, excludeSocket: socket);
+                }
+                
             }
             else
             {

@@ -23,7 +23,7 @@ namespace Handlers.Logic
             _messageRepository = messageRepository;
         }
 
-        public async Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
+        public Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
         {
             // ... (payload parsing and token checking) ...
             string? token;
@@ -64,7 +64,8 @@ namespace Handlers.Logic
 
                     var groupId = savedMessage.ChannelID.ToString();
                     // Broadcast to everyone in the group (including sender)
-                    _broadcaster.BroadcastToGroup(groupId, "getMessage", savedMessage);
+                    if (groupId != null) { _broadcaster.BroadcastToGroup(groupId, "getMessage", savedMessage);}
+                    
                 }
                 else
                 {

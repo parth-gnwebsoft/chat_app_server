@@ -20,7 +20,7 @@ namespace Handlers.Logic
             _messageRepository = messageRepository;
         }
 
-        public async Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
+        public Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
         {
             // ... (Payload parsing and token checking is the same) ...
             string? token;
@@ -55,7 +55,9 @@ namespace Handlers.Logic
                     // --- FIX #1 ---
                     // OLD: _broadcaster.BroadcastToGroup(groupId, "updateMessageSeen", updatedMessage, excludeSocket: socket);
                     // NEW: Broadcast to everyone, including the person who sent the "seen" event.
+                    if (groupId != null) { 
                     _broadcaster.BroadcastToGroup(groupId, "updateMessageSeen", updatedMessage);
+                    }
                 }
                 else
                 {
