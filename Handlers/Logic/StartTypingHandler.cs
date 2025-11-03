@@ -1,7 +1,6 @@
 ﻿// Handlers/Logic/StartTypingHandler.cs
 using Fleck;
 using System.Text.Json;
-using System.Threading.Tasks; // Keep this if IMessageHandler requires Task return
 
 namespace Handlers.Logic
 {
@@ -16,8 +15,7 @@ namespace Handlers.Logic
             _broadcaster = broadcaster;
         }
 
-        // ❌ Change 1: Remove 'async'
-        public Task HandleAsync(IWebSocketConnection socket, JsonElement payload) // ⬅️ Changed
+        public async Task HandleAsync(IWebSocketConnection socket, JsonElement payload)
         {
             var isGroup = payload.GetProperty("isGroup").GetBoolean();
             var senderId = payload.GetProperty("senderId").GetString();
@@ -37,9 +35,6 @@ namespace Handlers.Logic
                     _broadcaster.Send(receiverSocket, "userTyping", typingPayload);
                 }
             }
-            
-            // ✅ Change 2: Return a completed Task synchronously
-            return Task.CompletedTask; // ⬅️ Added
         }
     }
 }

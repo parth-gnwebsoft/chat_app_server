@@ -504,11 +504,8 @@ class Program
         server.Start(socket => wsHandler.OnNewConnection(socket));
 
         Console.WriteLine($"Server started on ws://0.0.0.0:{port}");
-        // Console.ReadLine(); // Keep the server running
-        // 🛑 CRITICAL FIX: Replace Console.ReadLine() with this loop
-        while (true)
+while (true)
         {
             Thread.Sleep(Timeout.Infinite);
-        }
-    }
+        }    }
 }

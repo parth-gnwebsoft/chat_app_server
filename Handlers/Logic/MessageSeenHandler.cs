@@ -44,7 +44,9 @@ namespace Handlers.Logic
 
             try
             {
-                ChatMessageRequest updatedMessage = await _messageRepository.UpdateMessageAsync(messageRequest, token);
+                 
+              
+                ChatMessageResponse updatedMessage = await _messageRepository.UpdateMessageAsync(messageRequest, token);
 
                 var isGroup = updatedMessage.ChannelType == "Group";
 
@@ -59,6 +61,7 @@ namespace Handlers.Logic
                 }
                 else
                 {
+
                     // --- FIX #2 ---
                     // 1. Send the update back to the SENDER (the person who marked it as "seen")
                     _broadcaster.Send(socket, "updateMessageSeen", updatedMessage);

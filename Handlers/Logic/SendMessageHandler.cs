@@ -50,6 +50,10 @@ namespace Handlers.Logic
                 // 1. Call API
                 ChatMessageResponse savedMessage = await _messageRepository.SaveMessageAsync(messageRequest, token);
 
+                Console.WriteLine($"messageRequest: {messageRequest.messageUrls}");
+
+                Console.WriteLine($"savedMessage: {savedMessage.messageUrls}");
+                savedMessage.messageUrls = messageRequest.messageUrls;
                 // --- 2. NEW LOGIC: Check ChannelType ---
                 bool isGroup = savedMessage.ChannelType == "Group";
 

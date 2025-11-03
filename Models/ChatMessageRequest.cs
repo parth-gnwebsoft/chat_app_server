@@ -21,6 +21,9 @@ namespace Models
         [JsonPropertyName("reciverUserID")]
         public int? ReciverUserID { get; set; }
 
+        [JsonPropertyName("messageUrls")]
+        public string? messageUrls { get; set; }
+
         [JsonPropertyName("content")]
         public string? Content { get; set; }
 
@@ -56,5 +59,9 @@ namespace Models
 
         [JsonPropertyName("modifiedByUserID")]
         public int? ModifiedByUserID { get; set; }
+
+        [JsonPropertyName("deliveryStatus")]
+        public string? deliveryStatus { get; set; }
+ 
     }
 }

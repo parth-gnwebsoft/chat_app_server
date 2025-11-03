@@ -56,10 +56,12 @@ namespace Handlers.Logic
             {
                 ReactionResponse savedReaction = await _messageRepository.AddReactionAsync(reactionRequest, token);
 
+
+ 
                 // 5. Broadcast API response using 'routingInfo' 
                 var isGroup = routingInfo.GetProperty("isGroup").GetBoolean();
-
-                if (isGroup)  
+ 
+                if (isGroup)
                 {
                     // 'chatId' is the ChannelID (as a string)
                     var groupId = routingInfo.GetProperty("chatId").GetString();
@@ -71,11 +73,8 @@ namespace Handlers.Logic
                 }
                 else
                 {
-                    // 'receiverId' is the UserID of the other person (as a string)
- 
+                     // 'receiverId' is the UserID of the other person (as a string)
                     var receiverId = routingInfo.GetProperty("receiverId").GetString();
-                    
-
                     if (receiverId != null && _stateService.GetSocketByUserId(receiverId) is { } receiverSocket)
                     {
                         // Send to the specific receiver

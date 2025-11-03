@@ -17,12 +17,19 @@ namespace Models
         [JsonPropertyName("SenderUserID")]
         public int? SenderUserID { get; set; }
 
+        [JsonPropertyName("messageUrls")]
+        public String? messageUrls { get; set; }
+
         // Note: Your API model has a typo ("reciver"). We match it exactly.
         [JsonPropertyName("ReciverUserID")]
         public int? ReciverUserID { get; set; }
 
         [JsonPropertyName("Content")]
         public string? Content { get; set; }
+
+
+         [JsonPropertyName("Status")]
+        public string? Status { get; set; }
 
         [JsonPropertyName("MessageType")]
         public string? MessageType { get; set; }

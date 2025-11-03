@@ -70,7 +70,7 @@ namespace Api
         } 
 
         // --- ADD THIS ENTIRE NEW METHOD ---
-        public async Task<ChatMessageRequest> UpdateMessageAsync(ChatMessageRequest messageUpdate, string authToken)
+        public async Task<ChatMessageResponse> UpdateMessageAsync(ChatMessageRequest messageUpdate, string authToken)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace Api
                     Console.WriteLine("[MessageApiService] Message successfully updated via API.");
                     string jsonResponse = await response.Content.ReadAsStringAsync();
 
-                    var updatedMessage = JsonSerializer.Deserialize<ChatMessageRequest>(jsonResponse);
+                    var updatedMessage = JsonSerializer.Deserialize<ChatMessageResponse>(jsonResponse);
 
                     if (updatedMessage == null)
                     {
@@ -124,7 +124,7 @@ namespace Api
                 {
                 string jsonPayload = JsonSerializer.Serialize(reaction);
                 var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json-patch+json");
- 
+
                 // Create a new request message to set the token
                 var request = new HttpRequestMessage(HttpMethod.Post, _reactionApiUrl); // <-- Use POST
                 request.Content = content;
@@ -137,9 +137,9 @@ namespace Api
                 {
                     Console.WriteLine("[MessageApiService] Reaction successfully saved via API.");
                     string jsonResponse = await response.Content.ReadAsStringAsync();
-
+ 
                     var savedReaction = JsonSerializer.Deserialize<ReactionResponse>(jsonResponse);
-
+ 
                     if (savedReaction == null)
                     {
                         throw new Exception("Failed to deserialize API reaction response.");

@@ -8,7 +8,7 @@ namespace Api
     {
         Task<ChatMessageResponse> SaveMessageAsync(ChatMessageRequest message, string authToken);
 
-        Task<ChatMessageRequest> UpdateMessageAsync(ChatMessageRequest messageUpdate, string authToken);
+        Task<ChatMessageResponse> UpdateMessageAsync(ChatMessageRequest messageUpdate, string authToken);
 
         Task<ReactionResponse> AddReactionAsync(ReactionRequest reaction, string authToken);
     }

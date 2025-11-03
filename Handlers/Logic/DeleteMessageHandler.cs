@@ -48,7 +48,7 @@ namespace Handlers.Logic
             // 4. Call API
             try
             {
-                ChatMessageRequest updatedMessage = await _messageRepository.UpdateMessageAsync(messageRequest, token);
+                ChatMessageResponse updatedMessage = await _messageRepository.UpdateMessageAsync(messageRequest, token);
 
                 // 5. Broadcast API response
                 var isGroup = updatedMessage.ChannelType == "Group";
