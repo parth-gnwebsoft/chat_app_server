@@ -18,4 +18,4 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # 🚨 CRITICAL CHANGE HERE: Use the correct DLL name 
-ENTRYPOINT ["dotnet", "chat_app_server.dll"]
+ENTRYPOINT ["dotnet", "chat_app_server_signal_r.dll"]
